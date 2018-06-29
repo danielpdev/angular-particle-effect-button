@@ -66,11 +66,11 @@ If `hidden` changes to `true`, the button will perform a disintegrating animatio
 | `pSpeed`  | number | func           | random(2)                             | Particle speed. May be a static number or a function which returns numbers. |
 | `pParticlesAmountCoefficient`  | number    | 3                             | Increases or decreases the relative number of particles |
 | `pOoscillationCoefficient`  | number           | 30                         | Increases or decreases the relative curvature of particles |
-| `pBegin`  | EventEmitter           | EventEmitter                                     | Callback to get notified when an animation starts. |
-| `pComplete`  | EventEmitter           | EventEmitter                                  | Callback to get notified when an animation completes. |
+| `pBegin`  | EventEmitter           | EventEmitter                                     | Callback to get notified when the animation starts. |
+| `pComplete`  | EventEmitter           | EventEmitter                                  | Callback to get notified when the animation completes. |
 
 
-I tried to keep the properties and behavior exactly the same as in the original codrops version.
+I've tried to keep the properties and behavior exactly the same as in the original codrops version.
 
 ## Related
 
