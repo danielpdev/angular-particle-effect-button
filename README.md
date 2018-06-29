@@ -78,7 +78,15 @@ I tried to keep the properties and behavior exactly the same as in the original 
 - [ParticleEffectsButtons](https://github.com/codrops/ParticleEffectsButtons/) - Original source this library is based on.
 - [Codrops Article](https://tympanus.net/codrops/2018/04/25/particle-effects-for-buttons/) - Original article this library is based on.
 
-This module was bootstrapped with [angular-cli](https://cli.angular.io).
+
+## Development
+This module was bootstrapped with [angular-cli](https://cli.angular.io) so it's using the common build/test/lint commands from angular-cli.
+### Library
+- Build: ng build angular-particle-effect-button
+- Test: ng test angular-particle-effect-button
+- Lint: ng lint angular-particle-effect-button
+### Project
+- See it in action: ng serve
 
 ## License
 
