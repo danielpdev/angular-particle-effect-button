@@ -18,10 +18,10 @@
     ],
     "paths": {
       "angular-particle-effect-button": [
-        "dist/angular-particle-effect-button"
+        "projects/angular-particle-effect-button/src/public_api"
       ],
       "angular-particle-effect-button/*": [
-        "dist/angular-particle-effect-button/*"
+        "projects/angular-particle-effect-button/*"
       ]
     }
   }
