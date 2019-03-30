@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   styleUrls:['./styles.css']
 })
 export class AppComponent {
+    public hidden12 = true;
+    public reset12 = true;
 }

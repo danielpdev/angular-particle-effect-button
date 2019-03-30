@@ -77,5 +77,9 @@
 			<button class="particles-button" libParticleEffectButton (pComplete)="reset11=!reset11" pType="triangle" pEeasing="easeOutSine" [pSize]=3 pDuration=800 pParticlesAmountCoefficient=7
 			 [pSpeed]=3 pOscillationCoefficient=1 [pHidden]="hidden11" (click)="hidden11=!hidden11">Export</button>
 		</div>
-	</div> 
+		<div class="grid__item theme-1">
+			<button class="action" *ngIf="reset12" (click)="hidden12=!hidden12">Reset</button>
+			<button class="particles-button" libParticleEffectButton (pComplete)="reset12=!reset12" [pHidden]="hidden12" (click)="hidden12=!hidden12">Send</button>
+		</div>
+	</div>
 </main>

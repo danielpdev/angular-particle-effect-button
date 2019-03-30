@@ -55,6 +55,10 @@ export class ParticleEffectButtonDirective implements AfterContentInit {
       this.getFormattedOptions(),
       this.renderer
     );
+
+      if (this._pHidden) {
+          this._particles.disintegrate({duration: 0});
+      }
   }
   private getFormattedOptions(): IOption {
      return {
