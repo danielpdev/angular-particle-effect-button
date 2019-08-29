@@ -22,6 +22,9 @@
       ],
       "angular-particle-effect-button/*": [
         "projects/angular-particle-effect-button/*"
+      ],
+      "core-js/es7/reflect": [
+        "node_modules/core-js/proposals/reflect-metadata"
       ]
     }
   }
