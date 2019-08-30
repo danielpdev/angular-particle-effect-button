@@ -7,16 +7,16 @@
 </svg>
 <main>
 	<header>
-			<h1>Angular 6 Particle Effects for Buttons</h1>
+			<h1>Angular 8 Particle Effects for Buttons</h1>
 			<a class="github" href="https://github.com/danielpdev/angular-particle-effect-button" title="Find this project on GitHub">
 				<svg class="icon icon--github">
 					<use xlink:href="#icon-github"></use>
 				</svg>
 			</a>
-	</header> 
-	<div class="grid"> 
+	</header>
+	<div class="grid">
 		<div class="grid__item theme-1">
-			<button class="action" *ngIf="reset0" (click)="hidden0=!hidden0">Reset</button> 
+			<button class="action" *ngIf="reset0" (click)="hidden0=!hidden0">Reset</button>
 			<button class="particles-button" libParticleEffectButton (pComplete)="reset0=!reset0" [pHidden]="hidden0" (click)="hidden0=!hidden0">Send</button>
 		</div>
 		<div class="grid__item theme-2">
@@ -29,8 +29,8 @@
 			<button class="particles-button" libParticleEffectButton (pComplete)="reset2=!reset2" pType="rectangle" pDuration=500 pDirection="top" pEasing="easeOutQuad"
 			 [pSize]=8 pParticlesAmountCoefficient=4 pOscillationCoefficient=2 pColor='#091388' [pHidden]="hidden2" (click)="hidden2=!hidden2">Delete</button>
 		</div>
-		<div class="grid__item theme-4"> 
-			<button class="action" *ngIf="reset3" (click)="hidden3=!hidden3">Reset</button> 
+		<div class="grid__item theme-4">
+			<button class="action" *ngIf="reset3" (click)="hidden3=!hidden3">Reset</button>
 			<button class="particles-button" libParticleEffectButton (pComplete)="reset3=!reset3" [pSpeed]=1 pDuration=500 pDirection="right" [pSize]=4 pParticlesAmountCoefficient=1.5
 			 pOscillationCoefficient=1 pColor='#e85577' [pHidden]="hidden3" (click)="hidden3=!hidden3">Submit</button>
 		</div>
@@ -66,12 +66,12 @@
 			<button class="particles-button" libParticleEffectButton (pComplete)="reset9=!reset9" pDirection="right" [pSize]=4 pColor="#969696" pDuration=1200 pEasing="easeInCubic"
 			 pParticlesAmountCoefficient=8 [pSpeed]=0.4 pOscillationCoefficient=1 [pHidden]="hidden9" (click)="hidden9=!hidden9">
 			Pause</button>
-		</div> 
+		</div>
 		<div class="grid__item theme-11">
 			<button class="action" *ngIf="reset10" (click)="hidden10=!hidden10">Reset</button>
 			<button class="particles-button" libParticleEffectButton (pComplete)="reset10=!reset10" pStyle="stroke" pColor="#1b81ea" pDirection="bottom" pDuration=1200 pEasing="easeOutSine"
 			 [pSpeed]=.7 pOscillationCoefficient=5 [pHidden]="hidden10" (click)="hidden10=!hidden10">Register</button>
-		</div>  
+		</div>
 		<div class="grid__item theme-12">
 			<button class="action" *ngIf="reset11" (click)="hidden11=!hidden11">Reset</button>
 			<button class="particles-button" libParticleEffectButton (pComplete)="reset11=!reset11" pType="triangle" pEeasing="easeOutSine" [pSize]=3 pDuration=800 pParticlesAmountCoefficient=7
