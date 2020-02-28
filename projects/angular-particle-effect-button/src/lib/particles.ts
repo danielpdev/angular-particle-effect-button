@@ -1,7 +1,6 @@
-import anime from 'animejs'; // tslint:disable-line
-
-import { ElementRef, Renderer2 } from '@angular/core';
-import { rand, is, stringToHyphens, getCSSValue, transformString, getElement } from './utils';
+import anime from 'animejs';
+import { Renderer2 } from '@angular/core';
+import { rand, is, transformString } from './utils';
 
 export interface IOption {
   color?: string;

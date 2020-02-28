@@ -9,6 +9,6 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to particle-effect-button!');
+    expect(page.getParagraphText()).toEqual('Angular Particle Effects for Buttons');
   });
 });

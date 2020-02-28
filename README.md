@@ -1,10 +1,10 @@
 # angular-particle-effect-button ([demo](https://codesandbox.io/s/j0jyz323v))
 
-> Superb particle effect buttons for Angular 6.
+> Superb particle effect buttons for Angular.
 
 [![Demo](https://raw.githubusercontent.com/danielpdev/angular-particle-effect-button/master/demo-animation.gif)](https://github.com/danielpdev/angular-particle-effect-button)
 
-This is a Angular 6 directive used as port of an awesome [Codrops Article](https://tympanus.net/codrops/2018/04/25/particle-effects-for-buttons/) by [Luis Manuel](https://tympanus.net/codrops/author/luis/) (original [source](https://github.com/codrops/ParticleEffectsButtons/)).
+This is a Angular directive used as port of an awesome [Codrops Article](https://tympanus.net/codrops/2018/04/25/particle-effects-for-buttons/) by [Luis Manuel](https://tympanus.net/codrops/author/luis/) (original [source](https://github.com/codrops/ParticleEffectsButtons/)).
 
 ## Install
 
