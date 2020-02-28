@@ -22,7 +22,7 @@ describe('AppComponent', () => {
         const fixture = TestBed.createComponent(AppComponent);
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
-        expect(compiled.querySelector('h1').textContent).toContain('Angular 8 Particle Effects for Buttons');
+        expect(compiled.querySelector('h1').textContent).toContain('Angular Particle Effects for Buttons');
     }));
 
 });

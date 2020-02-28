@@ -6,8 +6,6 @@ import {
   Output,
   Renderer2,
   AfterContentInit,
-  OnDestroy,
-  OnInit
 } from '@angular/core';
 import { rand } from './utils';
 import { Particles, IOption } from './particles';
