@@ -1,6 +1,6 @@
 import anime from 'animejs';
 import { Renderer2 } from '@angular/core';
-import { rand, isFunction, transformString } from './utils';
+import { rand, isFunction } from './utils';
 
 export interface IOption {
   color?: string;
@@ -215,8 +215,8 @@ export class Particles {
       this.o.direction === 'left' || this.o.direction === 'top'
         ? value
         : -value;
-    this.renderer.setStyle(this.wrapper, transformString, `${translateProperty}(${translateValue}%)`);
-    this.renderer.setStyle(this.el, transformString, `${translateProperty}(${-translateValue}%)`);
+    this.renderer.setStyle(this.wrapper, 'transform', `${translateProperty}(${translateValue}%)`);
+    this.renderer.setStyle(this.el, 'transform', `${translateProperty}(${-translateValue}%)`);
   }
 
   disintegrate(options: IOption = {}) {
