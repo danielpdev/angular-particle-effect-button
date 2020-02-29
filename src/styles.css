@@ -218,9 +218,7 @@ body {
   --color-scroll: #000000;
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
   min-height: 100vh;
-  color: #57585c;
   color: var(--color-text);
-  background-color: #fff;
   background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -294,13 +292,6 @@ header h1 {
   height: 100vw;
   width: 100vw;
   background: var(--color-item-bg);
-}
-
-.grid__item-title {
-  font-size: 0.85rem;
-  color: var(--color-item-title);
-  align-self: flex-start;
-  margin: 0;
 }
 
 .action {

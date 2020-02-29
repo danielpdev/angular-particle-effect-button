@@ -18,7 +18,7 @@ export class ParticleEffectButtonDirective implements AfterContentInit {
   private _pHidden = false;
   @Input() pColor = '#000';
   @Input() pDuration = 1000;
-  @Input() pEasing = 'easeInOutCubic';
+  @Input() pEasing: Array<number> | string = 'easeInOutCubic';
   @Input() pType = 'circle';
   @Input() pStyle = 'fill';
   @Input() pDirection = 'left';

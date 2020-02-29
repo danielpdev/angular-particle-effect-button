@@ -5,19 +5,19 @@ import { ParticleEffectButtonDirective } from './angular-particle-effect-button.
 import { isFunction } from './utils';
 
 @Component({
-  selector: 'test-component',
+  selector: 'lib-test-component',
   template: `
     <button libParticleEffectButton (click)="hidden0=!hidden0">Send</button>
   `,
 })
 class TestParticleEffectButtonComponent {
+  public hidden0 = false;
 }
 
 describe('AngularParticleEffectButtonComponent', () => {
   let component: TestParticleEffectButtonComponent;
   let fixture: ComponentFixture<TestParticleEffectButtonComponent>;
   let directiveDOM: DebugElement;
-  let divs: Array<DebugElement>;
   let directiveChildWrapper: Array<DebugElement>;
   let canvas: Array<DebugElement>;
   let defaultOptions: any;
