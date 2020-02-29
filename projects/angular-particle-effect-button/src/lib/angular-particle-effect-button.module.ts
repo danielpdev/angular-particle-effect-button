@@ -3,7 +3,8 @@ import { ParticleEffectButtonDirective } from './angular-particle-effect-button.
 
 @NgModule({
   declarations: [ParticleEffectButtonDirective],
-  exports: [ParticleEffectButtonDirective]
+  exports: [ParticleEffectButtonDirective],
 })
-export class ParticleEffectButtonModule { }
+export class ParticleEffectButtonModule {
+}
 

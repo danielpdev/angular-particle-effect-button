@@ -148,7 +148,7 @@
           },
           "configurations": {
             "production": {
-              "project": "projects/angular-particle-effect-button/ng-package.prod.json",
+              "project": "projects/angular-particle-effect-button/ng-package.prod.json"
             }
           }
         },
