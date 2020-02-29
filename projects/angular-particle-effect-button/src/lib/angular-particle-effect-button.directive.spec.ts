@@ -18,7 +18,8 @@ describe('AngularParticleEffectButtonComponent', () => {
   let component: TestParticleEffectButtonComponent;
   let fixture: ComponentFixture<TestParticleEffectButtonComponent>;
   let directiveDOM: DebugElement;
-  let directiveChildWrapper: Array<DebugElement>;
+  let directiveChildWrapper: DebugElement;
+  let directiveParentWrapper: DebugElement;
   let canvas: Array<DebugElement>;
   let defaultOptions: any;
   let originalTimeout: number;
@@ -78,8 +79,9 @@ describe('AngularParticleEffectButtonComponent', () => {
     fixture.detectChanges();
 
     directiveDOM = fixture.debugElement.query(By.directive(ParticleEffectButtonDirective));
-    directiveChildWrapper = directiveDOM.queryAll(By.css('div[style=\'position: relative; display: inline-block; overflow: hidden;\']'));
-    canvas = directiveDOM.queryAll(By.css('canvas[style=\'position: absolute; pointer-events: none; top: 50%; left: 50%; transform: translate3d(-50%, -50%, 0px); display: none;\']'));
+    directiveChildWrapper = directiveDOM.parent;
+    directiveParentWrapper = directiveChildWrapper.parent;
+    canvas = directiveParentWrapper.queryAll(By.css('canvas'));
   });
 
   it('should create directive', () => {
@@ -90,13 +92,29 @@ describe('AngularParticleEffectButtonComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should contain 1 div and 1 canvas with proper styles', () => {
-    expect(directiveChildWrapper.length).toBe(1);
-    expect(canvas.length).toBe(1);
+  it('should have a child wrapper containing the original button with proper styles', () => {
+    expect(directiveChildWrapper).toBeTruthy();
+    expect(directiveChildWrapper.styles.position).toEqual('relative');
+    expect(directiveChildWrapper.styles.display).toEqual('inline-block');
+    expect(directiveChildWrapper.styles.overflow).toEqual('hidden');
   });
 
-  it('should have directive top parent with proper styles', () => {
-    expect(directiveDOM.styles).toEqual({position: 'relative', display: 'inline-block'});
+  it('should have a parent wrapper containing the child wrapper and a canvas with proper styles', () => {
+    expect(directiveParentWrapper).toBeTruthy();
+    expect(directiveParentWrapper.styles.position).toEqual('relative');
+    expect(directiveParentWrapper.styles.display).toEqual('inline-block');
+  });
+
+  it('should have a canva with proper styles', () => {
+    expect(canvas.length).toBe(1);
+
+    const styles = canvas[0].styles;
+    expect(styles.position).toEqual('absolute');
+    expect(styles['pointer-events']).toEqual('none');
+    expect(styles.top).toEqual('50%');
+    expect(styles.left).toEqual('50%');
+    expect(styles.transform).toEqual('translate3d(-50%, -50%, 0px)');
+    expect(styles.display).toEqual('none');
   });
 
   it('should have default values already set', () => {
@@ -111,6 +129,7 @@ describe('AngularParticleEffectButtonComponent', () => {
     initializeDefaultOptions();
     const directiveInstance = directiveDOM.injector.get(ParticleEffectButtonDirective) as ParticleEffectButtonDirective;
     directiveInstance.pBegin.subscribe(() => {
+      expect(true).toBe(true);
       done();
     });
     directiveInstance.pHidden = true;
@@ -121,6 +140,7 @@ describe('AngularParticleEffectButtonComponent', () => {
     initializeDefaultOptions();
     const directiveInstance = directiveDOM.injector.get(ParticleEffectButtonDirective) as ParticleEffectButtonDirective;
     directiveInstance.pComplete.subscribe(() => {
+      expect(true).toBe(true);
       done();
     });
     directiveInstance.pHidden = true;
@@ -142,14 +162,11 @@ describe('AngularParticleEffectButtonComponent', () => {
     });
   });
 
-  it('should not allow to set private props', (done) => {
+  it('should not allow to set private props', () => {
     initializeOptions();
     const directiveInstance = directiveDOM.injector.get(ParticleEffectButtonDirective) as ParticleEffectButtonDirective;
-    directiveInstance.pOptions = {_particles: {}};
-    directiveInstance.pBegin.subscribe(() => {
-      done();
-    });
-    directiveInstance.pHidden = true;
+    directiveInstance.pOptions = {_particles: 'foo'};
+    expect((directiveInstance as any)._particles).not.toBe('foo');
     fixture.detectChanges();
 
   });
