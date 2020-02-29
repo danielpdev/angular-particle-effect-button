@@ -1,0 +1,27 @@
+name: Node.js CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run build-lib
+      - run: npm run build
+      - run: ./node_modules/.bin/ng test angular-particle-effect-button --progress false --watch=false --browsers ChromeHeadlessCustom
+      - run: ./node_modules/.bin/ng test particle-effect-button --progress false --watch=false --browsers ChromeHeadlessCustom
+      - run: npm run lint
+        env:
+          CI: true
