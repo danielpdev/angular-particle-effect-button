@@ -1,7 +1,6 @@
-import anime from 'animejs'; // tslint:disable-line
-
-import { ElementRef, Renderer2 } from '@angular/core';
-import { rand, is, stringToHyphens, getCSSValue, transformString, getElement } from './utils';
+import anime from 'animejs';
+import { Renderer2 } from '@angular/core';
+import { rand, isFunction } from './utils';
 
 export interface IOption {
   color?: string;
@@ -11,8 +10,8 @@ export interface IOption {
   duration?: number;
   easing?: Array<number> | string;
   direction?: string;
-  size?: () => number | number;
-  speed?: () => number | number;
+  size?: (() => number) | number;
+  speed?: (() => number) | number;
   particlesAmountCoefficient?: number;
   oscillationCoefficient?: number;
   begin?: () => void;
@@ -34,17 +33,18 @@ export class Particles {
   height: number;
   lastProgress: number;
   rect: HTMLCanvasElement;
+
   constructor(
     private el: any,
     private options: IOption,
-    private renderer: Renderer2
+    private renderer: Renderer2,
   ) {
-    this.options = { ...options };
+    this.options = {...options};
     this.init();
   }
 
   init(): void {
-   this.canvas = this.renderer.createElement('canvas');
+    this.canvas = this.renderer.createElement('canvas');
     this.ctx = this.canvas.getContext('2d');
     this.renderer.setStyle(this.canvas, 'position', 'absolute');
     this.renderer.setStyle(this.canvas, 'pointerEvents', 'none');
@@ -64,15 +64,16 @@ export class Particles {
     this.renderer.insertBefore(
       this.wrapper.parentNode,
       this.parentWrapper,
-      this.wrapper
+      this.wrapper,
     );
     this.renderer.appendChild(this.parentWrapper, this.wrapper);
     this.renderer.appendChild(this.parentWrapper, this.canvas);
   }
 
   setOptions(options) {
-    this.options = { ...this.options, ...options };
+    this.options = {...this.options, ...options};
   }
+
   loop() {
     this.updateParticles();
     this.renderParticles();
@@ -80,6 +81,7 @@ export class Particles {
       this.frame = requestAnimationFrame(this.loop.bind(this));
     }
   }
+
   updateParticles() {
     let p;
     for (let i = 0; i < this.particles.length; i++) {
@@ -96,11 +98,12 @@ export class Particles {
     if (!this.particles.length) {
       this.pause();
       this.renderer.setStyle(this.canvas, 'display', 'none');
-      if (is.fnc(this.o.complete)) {
+      if (isFunction(this.o.complete)) {
         this.o.complete();
       }
     }
   }
+
   renderParticles() {
     this.ctx.clearRect(0, 0, this.width, this.height);
     let p;
@@ -138,16 +141,19 @@ export class Particles {
       }
     }
   }
+
   play() {
     this.frame = requestAnimationFrame(this.loop.bind(this));
   }
+
   pause() {
     cancelAnimationFrame(this.frame);
     this.frame = null;
   }
+
   addParticle(options) {
     const frames = this.o.duration * 60 / 1000;
-    const speed: number = (is.fnc(this.o.speed)
+    const speed: number = (isFunction(this.o.speed)
       ? this.o.speed()
       : this.o.speed) as number;
     this.particles.push({
@@ -161,9 +167,10 @@ export class Particles {
       life: 0,
       death: this.disintegrating ? frames - 20 + Math.random() * 40 : frames,
       speed: speed,
-      size: is.fnc(this.o.size) ? this.o.size() : this.o.size
+      size: isFunction(this.o.size) ? this.o.size() : this.o.size,
     });
   }
+
   addParticles(rect: any, progress) {
     const progressDiff = this.disintegrating
       ? progress - this.lastProgress
@@ -186,13 +193,13 @@ export class Particles {
           : rect.height - progressValue;
     }
     let i = Math.floor(
-      this.o.particlesAmountCoefficient * (progressDiff * 100 + 1)
+      this.o.particlesAmountCoefficient * (progressDiff * 100 + 1),
     );
     if (i > 0) {
       while (i--) {
         this.addParticle({
           x: x + (this.isHorizontal() ? 0 : rect.width * Math.random()),
-          y: y + (this.isHorizontal() ? rect.height * Math.random() : 0)
+          y: y + (this.isHorizontal() ? rect.height * Math.random() : 0),
         });
       }
     }
@@ -201,15 +208,17 @@ export class Particles {
       this.play();
     }
   }
+
   addTransforms(value) {
     const translateProperty = this.isHorizontal() ? 'translateX' : 'translateY';
     const translateValue =
       this.o.direction === 'left' || this.o.direction === 'top'
         ? value
         : -value;
-    this.renderer.setStyle(this.wrapper, transformString, `${translateProperty}(${translateValue}%)`);
-    this.renderer.setStyle(this.el, transformString, `${translateProperty}(${-translateValue}%)`);
+    this.renderer.setStyle(this.wrapper, 'transform', `${translateProperty}(${translateValue}%)`);
+    this.renderer.setStyle(this.el, 'transform', `${translateProperty}(${-translateValue}%)`);
   }
+
   disintegrate(options: IOption = {}) {
     if (!this.isAnimating()) {
       this.disintegrating = true;
@@ -225,6 +234,7 @@ export class Particles {
       });
     }
   }
+
   integrate(options: IOption = {}) {
     if (!this.isAnimating()) {
       this.disintegrating = false;
@@ -242,8 +252,9 @@ export class Particles {
       });
     }
   }
+
   setup(options) {
-    this.o = { ...this.options, ...options };
+    this.o = {...this.options, ...options};
     this.renderer.setStyle(this.wrapper, 'visibility', 'visible');
     if (this.o.duration) {
       this.rect = this.el.getBoundingClientRect();
@@ -257,10 +268,11 @@ export class Particles {
   public isDisintegrated() {
     return this.disintegrating;
   }
+
   animate(update) {
     const _ = this;
     anime({
-      targets: { value: _.disintegrating ? 0 : 100 },
+      targets: {value: _.disintegrating ? 0 : 100},
       value: _.disintegrating ? 100 : 0,
       duration: _.o.duration,
       easing: _.o.easing,
@@ -270,12 +282,14 @@ export class Particles {
         if (_.disintegrating) {
           this.renderer.setStyle(_.wrapper, 'visibility', 'hidden');
         }
-      }
+      },
     });
   }
+
   isAnimating() {
     return !!this.frame;
   }
+
   isHorizontal() {
     return this.o.direction === 'left' || this.o.direction === 'right';
   }

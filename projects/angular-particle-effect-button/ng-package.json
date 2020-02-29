@@ -8,5 +8,7 @@
       "animejs": "animejs"
     }
   },
-  "whitelistedNonPeerDependencies":["animejs"]
+  "whitelistedNonPeerDependencies": [
+    "animejs"
+  ]
 }
