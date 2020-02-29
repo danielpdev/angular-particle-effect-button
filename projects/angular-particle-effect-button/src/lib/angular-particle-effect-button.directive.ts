@@ -27,8 +27,8 @@ export class ParticleEffectButtonDirective implements AfterContentInit {
   @Input() pParticlesAmountCoefficient = 3;
   @Output() pBegin = new EventEmitter<void>();
   @Output() pComplete = new EventEmitter<void>();
-  @Input() pSize: () => number | number = () => Math.floor((Math.random() * 3) + 1);
-  @Input() pSpeed: () => number | number = () => rand(4);
+  @Input() pSize: (() => number) | number = () => Math.floor((Math.random() * 3) + 1);
+  @Input() pSpeed: (() => number) | number = () => rand(4);
 
   @Input('pHidden')
   set pHidden(value: boolean) {

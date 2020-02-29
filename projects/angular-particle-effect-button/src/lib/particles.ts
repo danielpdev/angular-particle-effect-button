@@ -1,6 +1,6 @@
 import anime from 'animejs';
 import { Renderer2 } from '@angular/core';
-import { rand, is, transformString } from './utils';
+import { rand, isFunction, transformString } from './utils';
 
 export interface IOption {
   color?: string;
@@ -10,8 +10,8 @@ export interface IOption {
   duration?: number;
   easing?: Array<number> | string;
   direction?: string;
-  size?: () => number | number;
-  speed?: () => number | number;
+  size?: (() => number) | number;
+  speed?: (() => number) | number;
   particlesAmountCoefficient?: number;
   oscillationCoefficient?: number;
   begin?: () => void;
@@ -98,7 +98,7 @@ export class Particles {
     if (!this.particles.length) {
       this.pause();
       this.renderer.setStyle(this.canvas, 'display', 'none');
-      if (is.fnc(this.o.complete)) {
+      if (isFunction(this.o.complete)) {
         this.o.complete();
       }
     }
@@ -153,7 +153,7 @@ export class Particles {
 
   addParticle(options) {
     const frames = this.o.duration * 60 / 1000;
-    const speed: number = (is.fnc(this.o.speed)
+    const speed: number = (isFunction(this.o.speed)
       ? this.o.speed()
       : this.o.speed) as number;
     this.particles.push({
@@ -167,7 +167,7 @@ export class Particles {
       life: 0,
       death: this.disintegrating ? frames - 20 + Math.random() * 40 : frames,
       speed: speed,
-      size: is.fnc(this.o.size) ? this.o.size() : this.o.size,
+      size: isFunction(this.o.size) ? this.o.size() : this.o.size,
     });
   }
 

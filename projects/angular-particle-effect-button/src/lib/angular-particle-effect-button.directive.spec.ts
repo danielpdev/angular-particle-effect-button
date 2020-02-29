@@ -2,8 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ParticleEffectButtonDirective } from './angular-particle-effect-button.directive';
-import { IOption } from './particles';
-import { is, rand } from './utils';
+import { isFunction } from './utils';
 
 @Component({
   selector: 'test-component',
@@ -135,7 +134,7 @@ describe('AngularParticleEffectButtonComponent', () => {
     fixture.detectChanges();
     const directiveOptions = directiveInstance.pOptions;
     Object.keys(directiveOptions).forEach(key => {
-      if (is.fnc(options[key])) {
+      if (isFunction(options[key])) {
         expect(options[key]).toBe(directiveOptions[key]);
       } else {
         expect(options[key]).toEqual(directiveOptions[key]);

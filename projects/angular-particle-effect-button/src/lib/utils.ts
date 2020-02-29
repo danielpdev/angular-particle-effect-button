@@ -1,20 +1,20 @@
-export const is = {
-  fnc: a => typeof a === 'function',
-};
+export function isFunction(a: any): a is Function {
+  return typeof a === 'function';
+}
 
-const stringToHyphens = str => {
+function stringToHyphens(str: string): string {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-};
+}
 
-const getCSSValue = (el, prop) => {
+function getCSSValue(el: HTMLElement, prop: string): string | undefined {
   if (prop in el.style) {
     return getComputedStyle(el).getPropertyValue(stringToHyphens(prop)) || '0';
   }
-};
+}
 
 const t = 'transform';
 export const transformString = getCSSValue(document.body, t) ? t : '-webkit-' + t;
 
-export const rand = value => {
+export function rand(value: number): number {
   return Math.random() * value - value / 2;
-};
+}
