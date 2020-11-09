@@ -51,7 +51,7 @@
     <div class="grid__item theme-7">
       <button class="action" *ngIf="reset6" (click)="hidden6=!hidden6">Reset</button>
       <button class="particles-button" libParticleEffectButton (pComplete)="reset6=!reset6" pType="rectangle" pColor="#e87084" pStyle="stroke" [pSpeed]=1 pDuration=600
-              [pEasing]="[0.2,1,0.7,1]" [pSize]=15 pParticlesAmountCoefficient=2 pOscillationCoefficient=5 pDirection="right" [pHidden]="hidden6"
+              pEasing="easeInOutSine" [pSize]=15 pParticlesAmountCoefficient=2 pOscillationCoefficient=5 pDirection="right" [pHidden]="hidden6"
               (click)="hidden6=!hidden6">Subscribe
       </button>
     </div>

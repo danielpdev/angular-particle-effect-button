@@ -2,10 +2,11 @@
   "name": "angular-particle-effect-button",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0"
+    "@angular/common": "^10.0.0",
+    "@angular/core": "^10.0.0"
   },
   "dependencies": {
-    "animejs": "^3.1.0"
+    "animejs": "^3.2.0",
+    "tslib": "^2.0.0"
   }
 }
